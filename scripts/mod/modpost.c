@@ -1224,6 +1224,10 @@ static int secref_whitelist(const struct sectioncheck *mismatch,
 		return 0;
 
 	/* Check for pattern 6 */
+	if (strstarts(fromsym, ".L"))
+		return 0;
+
+	/* Check for pattern 7 */
 	if (match(fromsec, text_sections) &&
 	    match(tosec, init_exit_sections) &&
 	    match(tosym, cfi_symbols))
