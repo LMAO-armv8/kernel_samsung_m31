@@ -295,7 +295,6 @@ proc_dolongvec_minmax_bpf_restricted(struct ctl_table *table, int write,
 
 	return proc_doulongvec_minmax(table, write, buffer, lenp, ppos);
 }
-# endif
 #endif
 
 static struct ctl_table net_core_table[] = {
@@ -410,7 +409,7 @@ static struct ctl_table net_core_table[] = {
 		.proc_handler	= proc_dolongvec_minmax_bpf_restricted,
 		.extra1		= &long_one,
 		.extra2		= &long_max,
-		},
+	},
 #endif
 	{
 		.procname	= "netdev_tstamp_prequeue",
