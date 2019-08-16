@@ -274,7 +274,6 @@ static int proc_dointvec_minmax_bpf_enable(struct ctl_table *table, int write,
 	return ret;
 }
 
-# ifdef CONFIG_HAVE_EBPF_JIT
 static int
 proc_dointvec_minmax_bpf_restricted(struct ctl_table *table, int write,
 				    void __user *buffer, size_t *lenp,
@@ -411,7 +410,7 @@ static struct ctl_table net_core_table[] = {
 		.proc_handler	= proc_dolongvec_minmax_bpf_restricted,
 		.extra1		= &long_one,
 		.extra2		= &long_max,
-	},
+		},
 #endif
 	{
 		.procname	= "netdev_tstamp_prequeue",
