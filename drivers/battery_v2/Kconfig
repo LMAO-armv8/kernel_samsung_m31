@@ -84,13 +84,6 @@ config UPDATE_BATTERY_DATA
 	help
 	 Say Y to include support for step charging
 
-config ENG_BATTERY_CONCEPT
-	tristate "set test mode in eng build"
-	default n
-	depends on BATTERY_SAMSUNG
-	help
-	 Say Y to set test mode in eng build
-
 config AFC_CURR_CONTROL_BY_TEMP
 	tristate "fast charging current control by temp"
 	default n
@@ -593,4 +586,3 @@ config ENABLE_100MA_CHARGING_BEFORE_USB_CONFIGURED
 	default n
 	help
 	  Say Y to enable 100mA before usb configured
-
