@@ -236,5 +236,4 @@ source "drivers/fingerprint/Kconfig"
 
 source "drivers/spu_verify/Kconfig"
 
-source "drivers/kperfmon/Kconfig"
 endmenu
