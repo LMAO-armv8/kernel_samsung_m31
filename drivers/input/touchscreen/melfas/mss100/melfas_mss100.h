@@ -322,7 +322,8 @@ struct mms_ts_coordinate {
 struct mms_ts_info {
 	struct i2c_client *client;
 	struct input_dev *input_dev;
-	struct input_dev *input_dev_proximity;
+	struct input_dev *input_dev_pad;
+        struct input_dev *input_dev_proximity;
 	char phys[32];
 	struct mms_devicetree_data *dtdata;
 	struct pinctrl *pinctrl;
@@ -502,6 +503,7 @@ struct mms_devicetree_data {
 	bool regulator_boot_on;
 	bool support_dual_fw;
 	bool support_model_feature;
+        bool support_dex;
 
 	int max_x;
 	int max_y;
