@@ -155,6 +155,9 @@ endif
 
 KBUILD_DTBS	:= dtbs
 
+KBUILD_DTBO_EXYNOS_IMG := dtbo_exynos.img
+KBUILD_DTB_EXYNOS_IMG := dtb_exynos.img
+
 all:	Image.gz $(KBUILD_DTBS) $(subst $\",,$(CONFIG_BUILD_ARM64_APPENDED_KERNEL_IMAGE_NAME))
 
 
@@ -170,6 +173,9 @@ zinstall install:
 %.dtb: scripts
 	$(Q)$(MAKE) $(build)=$(boot)/dts $(boot)/dts/$@
 
+%.dtbo: scripts
+	$(Q)$(MAKE) $(build)=$(boot)/dts $(boot)/dts/$@
+
 PHONY += dtbs dtbs_install
 
 dtbs: prepare scripts
@@ -183,6 +189,16 @@ Image-dtb: vmlinux scripts dtbs
 
 Image.gz-dtb: vmlinux scripts dtbs Image.gz
 	$(Q)$(MAKE) $(build)=$(boot) $(boot)/$@
+
+$(KBUILD_DTBO_EXYNOS_IMG): dtbs
+	$(Q)$(MAKE) $(build)=$(boot) $(boot)/$@
+
+all: $(KBUILD_DTBO_EXYNOS_IMG)
+
+$(KBUILD_DTB_EXYNOS_IMG): dtbs
+	$(Q)$(MAKE) $(build)=$(boot) $(boot)/$@
+
+all: $(KBUILD_DTB_EXYNOS_IMG)
 
 PHONY += vdso_install
 vdso_install:
