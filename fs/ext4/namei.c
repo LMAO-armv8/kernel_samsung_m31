@@ -2696,7 +2696,7 @@ bool ext4_empty_dir(struct inode *inode)
 {
 	unsigned int offset;
 	struct buffer_head *bh;
-	struct ext4_dir_entry_2 *de;
+	struct ext4_dir_entry_2 *de, *de1;
 	struct super_block *sb;
 
 	if (ext4_has_inline_data(inode)) {
@@ -2721,10 +2721,10 @@ bool ext4_empty_dir(struct inode *inode)
 		return true;
 
 	de = (struct ext4_dir_entry_2 *) bh->b_data;
-	de1 = ext4_next_entry(de, sb->s_blocksize);
-        if (ext4_check_dir_entry(inode, NULL, de, bh, bh->b_data, bh->b_size,
+        de1 = ext4_next_entry(de, sb->s_blocksize);
+	if (ext4_check_dir_entry(inode, NULL, de, bh, bh->b_data, bh->b_size,
                         le32_to_cpu(de1->inode) == 0 ||
-	    le32_to_cpu(de->inode) != inode->i_ino || strcmp(".", de->name)) {
+	    le32_to_cpu(de->inode) != inode->i_ino || strcmp(".", de->name))) {
                 ext4_warning_inode(inode, "directory missing '.'");
 		brelse(bh);
 		return true;
