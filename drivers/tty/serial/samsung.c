@@ -2230,11 +2230,9 @@ static int s3c24xx_serial_resume_noirq(struct device *dev)
 				uintm &= ~S3C64XX_UINTM_TXD_MSK;
 			if (rx_enabled(port))
 				uintm &= ~S3C64XX_UINTM_RXD_MSK;
-<<<<<<< HEAD
 			uart_clock_enable(ourport);
 			wr_regl(port, S3C64XX_UINTM, uintm);
 			uart_clock_disable(ourport);
-=======
 			clk_prepare_enable(ourport->clk);
 			if (!IS_ERR(ourport->baudclk))
 				clk_prepare_enable(ourport->baudclk);
@@ -2242,7 +2240,6 @@ static int s3c24xx_serial_resume_noirq(struct device *dev)
 			if (!IS_ERR(ourport->baudclk))
 				clk_disable_unprepare(ourport->baudclk);
 			clk_disable_unprepare(ourport->clk);
->>>>>>> 925ed8333ee8 (serial: samsung: Enable baud clock for UART reset procedure in resume)
 		}
 	}
 
