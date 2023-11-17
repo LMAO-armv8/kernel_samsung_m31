@@ -882,22 +882,24 @@ int f2fs_get_valid_checkpoint(struct f2fs_sb_info *sbi)
 		goto fail_no_cp;
 	}
 
+	cp_block = (struct f2fs_checkpoint *)page_address(cur_page);
 	memcpy(sbi->ckpt, cp_block, blk_size);
 
 	if (cur_page == cp1)
-		err = -EFSCORRUPTED;
-		goto free_fail_no_cp;
+		sbi->cur_cp_pack = 1;
 	else
 		sbi->cur_cp_pack = 2;
 
-	}
-
-	f2fs_get_fsck_stat(sbi);
-=======
-	if (sanity_check_ckpt(sbi)) {
+	/* Sanity checking of checkpoint */
+	if (f2fs_sanity_check_ckpt(sbi)) {
+		print_block_data(sbi->sb, cur_page->index,
+				 page_address(cur_page), 0, blk_size);
 		err = -EFSCORRUPTED;
 		goto free_fail_no_cp;
 	}
+
+	f2fs_get_fsck_stat(sbi);
+
 	if (cp_blks <= 1)
 		goto done;
 
@@ -924,9 +926,8 @@ done:
 free_fail_no_cp:
 	f2fs_put_page(cp1, 1);
 	f2fs_put_page(cp2, 1);
-
 fail_no_cp:
-	kfree(sbi->ckpt);
+	kvfree(sbi->ckpt);
 	return err;
 }
 
