@@ -14,7 +14,7 @@ export ARCH=arm64
 export PLATFORM_VERSION=12
 export ANDROID_MAJOR_VERSION=s
 
-make LD=ld.lld ARCH=arm64 CC=clang KCFLAGS=-w AR=llvm-ar NM=llvm-nm LLVM_NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump READELF=llvm-readelf OBJSIZE=llvm-size STRIP=llvm-strip LLVM_AR=llvm-ar LLVM_DIS=llvm-dis CONFIG_SECTION_MISMATCH_WARN_ONLY=y exynos9610-m31nsxx_gcc_defconfig
+make LD=ld.lld ARCH=arm64 CC=clang KCFLAGS=-w AR=llvm-ar NM=llvm-nm LLVM_NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump READELF=llvm-readelf OBJSIZE=llvm-size STRIP=llvm-strip LLVM_AR=llvm-ar LLVM_DIS=llvm-dis CONFIG_SECTION_MISMATCH_WARN_ONLY=y exynos9610-m31nsxx_defconfig
 make LD=ld.lld ARCH=arm64 CC=clang KCFLAGS=-w AR=llvm-ar NM=llvm-nm LLVM_NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump READELF=llvm-readelf OBJSIZE=llvm-size STRIP=llvm-strip LLVM_AR=llvm-ar LLVM_DIS=llvm-dis CONFIG_SECTION_MISMATCH_WARN_ONLY=y -j$(nproc)
 
 
