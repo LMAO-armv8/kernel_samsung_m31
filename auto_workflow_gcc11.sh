@@ -24,8 +24,3 @@ rm -rf AIK/dtbo
 cp -r arch/arm64/boot/Image AIK/Image
 cp -r arch/arm64/boot/dtb_exynos.img AIK/dtb
 cp -r arch/arm64/boot/dtbo_exynos.img AIK/dtbo
-cd AIK
-rm -rf LMAO_kernel_m31.zip
-rm -rf LMAO_kernel_m31s.zip
-zip -r9 LMAO_kernel_m31.zip * -x .git README.md *placeholder
-cd ..

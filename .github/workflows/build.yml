@@ -30,4 +30,4 @@ jobs:
         uses: actions/upload-artifact@v3.1.2
         with:
           name: LMAO Kernel
-          path: AIK/LMAO_kernel_m31.zip
+          path: AIK/
